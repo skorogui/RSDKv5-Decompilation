@@ -49,9 +49,9 @@ jobs:
         run: vcpkg install libtheora libogg --triplet=x64-windows-static
       - name: Build RSDKv5 + U
         run: |
-          cmake -B build_v5 ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN64_FLAGS}} ${{env.V5_FLAGS}} -DRETRO_SUBSYSTEM=DX11
+          cmake -B build_v5 ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN64_FLAGS}} ${{env.V5_FLAGS}} -DRETRO_SUBSYSTEM=VK
           cmake --build build_v5 --parallel --config Release
-          cmake -B build_v5U ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN64_FLAGS}} ${{env.V5U_FLAGS}} -DRETRO_SUBSYSTEM=DX11
+          cmake -B build_v5U ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN64_FLAGS}} ${{env.V5U_FLAGS}} -DRETRO_SUBSYSTEM=VK
           cmake --build build_v5U --parallel --config Release
       - name: Move artifacts
         run: |
