@@ -24,12 +24,16 @@ jobs:
           submodules: recursive
       - name: Install dependencies
         run: vcpkg install libtheora libogg glfw3 --triplet=x64-windows-static
-      - name: Setup Vulkan SDK
-        uses: thebeastmaster/setup-vulkan-sdk@v1
+      - name: Install Vulkan SDK
+        uses: jakoch/install-vulkan-sdk-action@v1
         with:
-          vulkan-query-version: 'latest' # Or specify a version like '1.3.296.0'
-          vulkan-components: 'Vulkan-Headers, Vulkan-Loader'
-          vulkan-use-cache: true
+          # You can set the Vulkan SDK version to download.
+          # Defaults to latest version, if version not set.
+          vulkan_version: 1.3.231.1
+          optional_components: com.lunarg.vulkan.vma
+          install_runtime: true
+          cache: true
+          stripdown: true
       - name: Build RSDKv5 + U
         run: |
           cmake -B build_v5 ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN64_FLAGS}} ${{env.V5_FLAGS}} -DRETRO_SUBSYSTEM=VK
