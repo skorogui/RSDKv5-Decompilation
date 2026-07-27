@@ -22,7 +22,7 @@ jobs:
         with:
           submodules: recursive
       - name: Install dependencies
-        run: vcpkg install libtheora libogg --triplet=x86-windows-static
+        run: vcpkg install libtheora libogg glfw3 --triplet=x86-windows-static
       - name: Build RSDKv5 + U
         run: |
           cmake -B build_v5 ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN32_FLAGS}} ${{env.V5_FLAGS}}
@@ -46,7 +46,7 @@ jobs:
         with:
           submodules: recursive
       - name: Install dependencies
-        run: vcpkg install libtheora libogg --triplet=x64-windows-static
+        run: vcpkg install libtheora libogg glfw3 --triplet=x64-windows-static
       - name: Build RSDKv5 + U
         run: |
           cmake -B build_v5 ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN64_FLAGS}} ${{env.V5_FLAGS}} -DRETRO_SUBSYSTEM=VK
